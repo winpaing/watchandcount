@@ -3,72 +3,23 @@ class MusicPlayer {
         this.playlist = [
             {
                 title: 'Happy Birthday Song',
-                file: '/music/happy_birthday.mp3'
+                artist: 'Birthday Classics',
+                file: '/music/happy_birthday.mp3' // Update this path
             }
         ];
         
-        this.audio = new Audio(this.playlist[0].file);
+        this.audio = new Audio();
         this.currentTrack = 0;
         this.isPlaying = false;
         
-        this.initPlayer();
-        this.setupEventListeners();
-    }
-
-    initPlayer() {
-        this.audio.src = this.playlist[this.currentTrack].file;
-        this.audio.load();
-    }
-
-    setupEventListeners() {
-        // Fix play button selector and event listener
-        const playBtn = document.querySelector('.play-btn');
-        if (playBtn) {
-            playBtn.addEventListener('click', () => {
-                if (this.isPlaying) {
-                    this.pause();
-                } else {
-                    this.play();
-                }
-            });
-        }
-
-        // Add error handling for audio
+        // Add error handling
         this.audio.addEventListener('error', (e) => {
             console.error('Audio Error:', e);
-            alert('Unable to play audio. Please check if the audio file exists.');
+            console.log('Audio source:', this.audio.src);
         });
-
-        // Add loading state
-        this.audio.addEventListener('loadstart', () => {
-            playBtn.disabled = true;
-        });
-
-        this.audio.addEventListener('canplay', () => {
-            playBtn.disabled = false;
-        });
-    }
-
-    play() {
-        const playPromise = this.audio.play();
         
-        if (playPromise !== undefined) {
-            playPromise
-                .then(() => {
-                    this.isPlaying = true;
-                    document.querySelector('.play-btn i').className = 'fas fa-pause';
-                })
-                .catch(error => {
-                    console.error('Playback error:', error);
-                    this.isPlaying = false;
-                });
-        }
-    }
-
-    pause() {
-        this.audio.pause();
-        this.isPlaying = false;
-        document.querySelector('.play-btn i').className = 'fas fa-play';
+        this.initPlayer();
+        this.setupEventListeners();
     }
 }
 
