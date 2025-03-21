@@ -88,3 +88,102 @@
         image-rendering: -webkit-optimize-contrast;
     }
 }
+
+
+/* Mobile Menu Styles */
+.menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 1rem;
+}
+
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: block;
+    }
+
+    nav ul {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: rgba(0, 0, 0, 0.9);
+        backdrop-filter: blur(10px);
+        padding: 1rem;
+        flex-direction: column;
+    }
+
+    nav.menu-open ul {
+        display: flex;
+    }
+
+    nav a {
+        padding: 1rem;
+        text-align: center;
+        width: 100%;
+    }
+
+    /* Adjust section paddings */
+    section {
+        padding: 1rem;
+    }
+
+    /* Make forms more touch-friendly */
+    input, textarea, button {
+        min-height: 44px;
+        font-size: 16px; /* Prevent iOS zoom on focus */
+    }
+
+    /* Adjust gallery for mobile */
+    .gallery-container {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    /* Make music player controls bigger */
+    .control-btn {
+        padding: 1rem;
+        font-size: 1.8rem;
+    }
+
+    /* Adjust countdown display */
+    .countdown-container {
+        flex-wrap: wrap;
+    }
+
+    .countdown-item {
+        flex: 1 1 40%;
+        margin: 0.5rem;
+    }
+}
+
+/* Add touch feedback */
+@media (hover: none) {
+    .button, .share-btn, .control-btn {
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    .button:active, .share-btn:active, .control-btn:active {
+        transform: scale(0.95);
+        opacity: 0.8;
+    }
+}
+
+/* Handle landscape mode */
+@media (max-height: 500px) and (orientation: landscape) {
+    .profile-container {
+        flex-direction: row;
+        align-items: center;
+        gap: 2rem;
+    }
+
+    .profile-image {
+        width: 100px;
+        height: 100px;
+    }
+}

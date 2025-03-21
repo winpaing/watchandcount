@@ -183,6 +183,25 @@ class ProfileEnhancer {
             }
         }, 20);
     }
+    // Add this to your existing ProfileEnhancer class
+    addSparkleEffect() {
+        const profileImage = document.querySelector('.profile-image');
+        const sparklesContainer = document.createElement('div');
+        sparklesContainer.className = 'profile-sparkles';
+        profileImage.appendChild(sparklesContainer);
+    
+        setInterval(() => {
+            const sparkle = document.createElement('div');
+            sparkle.className = 'sparkle';
+            sparkle.style.left = Math.random() * 100 + '%';
+            sparkle.style.top = Math.random() * 100 + '%';
+            sparkle.style.setProperty('--tx', (Math.random() * 100 - 50) + 'px');
+            sparkle.style.setProperty('--ty', (Math.random() * 100 - 50) + 'px');
+            
+            sparklesContainer.appendChild(sparkle);
+            setTimeout(() => sparkle.remove(), 1500);
+        }, 100);
+    }
 }
 
 // Initialize profile section

@@ -73,3 +73,49 @@ class MobileOptimizer {
 
 // Initialize mobile optimizations
 const mobileOptimizer = new MobileOptimizer();
+
+
+class MobileMenu {
+    constructor() {
+        this.addMobileMenuToggle();
+        this.handleMobileInteractions();
+    }
+
+    addMobileMenuToggle() {
+        const nav = document.querySelector('nav');
+        const menuToggle = document.createElement('button');
+        menuToggle.className = 'menu-toggle';
+        menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+        nav.prepend(menuToggle);
+
+        menuToggle.addEventListener('click', () => {
+            nav.classList.toggle('menu-open');
+        });
+    }
+
+    handleMobileInteractions() {
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            const nav = document.querySelector('nav');
+            if (!nav.contains(e.target) && nav.classList.contains('menu-open')) {
+                nav.classList.remove('menu-open');
+            }
+        });
+
+        // Smooth scroll for mobile
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', (e) => {
+                e.preventDefault();
+                const nav = document.querySelector('nav');
+                nav.classList.remove('menu-open');
+                
+                document.querySelector(anchor.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    }
+}
+
+// Initialize mobile menu
+const mobileMenu = new MobileMenu();
