@@ -4,8 +4,7 @@ class MusicPlayer {
             {
                 title: 'Happy Birthday Song',
                 artist: 'Birthday Classics',
-                // Update path for GitHub Pages
-                file: 'music/happy_birthday.mp3'
+                file: 'https://winpaing.github.io/watchandcount/assets/music/birthday.mp3'
             }
         ];
         
@@ -18,76 +17,32 @@ class MusicPlayer {
     }
 
     initPlayer() {
-        // Use absolute path for local and relative path for GitHub Pages
-        const isGitHubPages = window.location.hostname === 'winpaing.github.io';
-        const baseUrl = isGitHubPages ? 'https://winpaing.github.io/watchandcount/' : '';
-        
-        this.audio.src = baseUrl + this.playlist[this.currentTrack].file;
-        this.audio.preload = 'auto';
-        this.audio.load();
-        
-        // Enhanced error handling
-        this.audio.addEventListener('canplaythrough', () => {
-            console.log('Audio ready to play');
-        });
-        
-        this.audio.addEventListener('error', (e) => {
-            const errors = [
-                'MEDIA_ERR_ABORTED',
-                'MEDIA_ERR_NETWORK',
-                'MEDIA_ERR_DECODE',
-                'MEDIA_ERR_SRC_NOT_SUPPORTED'
-            ];
-            console.error('Audio Error:', errors[this.audio.error.code - 1]);
-            console.log('Audio source:', this.audio.src);
-        });
-
-        // Add loading state
-        this.audio.addEventListener('loadstart', () => {
-            const playBtn = document.querySelector('.play-btn');
-            if (playBtn) playBtn.disabled = true;
-        });
-
-        this.audio.addEventListener('canplay', () => {
-            const playBtn = document.querySelector('.play-btn');
-            if (playBtn) playBtn.disabled = false;
-        });
-    }
-
-    setupEventListeners() {
-        const playBtn = document.querySelector('.play-btn');
-        if (!playBtn) {
-            console.error('Play button not found');
-            return;
+        try {
+            this.audio.src = this.playlist[this.currentTrack].file;
+            this.audio.preload = 'auto';
+            this.audio.crossOrigin = 'anonymous';
+            this.audio.load();
+            
+            this.audio.addEventListener('loadeddata', () => {
+                console.log('Audio data loaded');
+                const playBtn = document.querySelector('.play-btn');
+                if (playBtn) playBtn.disabled = false;
+            });
+            
+            this.audio.addEventListener('error', (e) => {
+                const errorTypes = {
+                    1: 'MEDIA_ERR_ABORTED',
+                    2: 'MEDIA_ERR_NETWORK',
+                    3: 'MEDIA_ERR_DECODE',
+                    4: 'MEDIA_ERR_SRC_NOT_SUPPORTED'
+                };
+                const error = this.audio.error;
+                console.error('Audio Error:', errorTypes[error.code], error.message);
+                alert('Unable to load audio. Please try again later.');
+            });
+        } catch (error) {
+            console.error('Audio initialization error:', error);
         }
-
-        playBtn.addEventListener('click', () => {
-            if (this.isPlaying) {
-                this.pause();
-            } else {
-                this.play();
-            }
-        });
-    }
-
-    play() {
-        const playPromise = this.audio.play();
-        if (playPromise !== undefined) {
-            playPromise
-                .then(() => {
-                    this.isPlaying = true;
-                    document.querySelector('.play-btn i').className = 'fas fa-pause';
-                })
-                .catch(error => {
-                    console.error('Playback failed:', error);
-                });
-        }
-    }
-
-    pause() {
-        this.audio.pause();
-        this.isPlaying = false;
-        document.querySelector('.play-btn i').className = 'fas fa-play';
     }
 }
 
