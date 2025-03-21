@@ -28,6 +28,9 @@ class CountdownTimer {
         this.addProgressBars();
         this.addAnimatedBackground();
         this.addSoundEffects();
+        this.addGlowEffect();
+        this.addPulseAnimation();
+        this.addInteractiveHover();
     }
 
     addProgressBars() {
@@ -74,6 +77,38 @@ class CountdownTimer {
             }
         }, 1000);
     }
+
+    addGlowEffect() {
+        const numbers = document.querySelectorAll('.countdown-number');
+        numbers.forEach(number => {
+            number.innerHTML = `
+                <div class="glow-wrapper">
+                    <span class="glow-number">${number.textContent}</span>
+                    <div class="glow-effect"></div>
+                </div>
+            `;
+        });
+    }
+
+    addPulseAnimation() {
+        const labels = document.querySelectorAll('.countdown-label');
+        labels.forEach(label => {
+            label.classList.add('pulse-text');
+        });
+    }
+
+    addInteractiveHover() {
+        const items = document.querySelectorAll('.countdown-item');
+        items.forEach(item => {
+            item.addEventListener('mouseover', () => {
+                item.classList.add('hover-effect');
+            });
+            item.addEventListener('mouseout', () => {
+                item.classList.remove('hover-effect');
+            });
+        });
+    }
+}
 
     updateCountdown() {
         updateTimer() {
