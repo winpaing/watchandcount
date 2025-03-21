@@ -273,6 +273,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Add this to your ProfileEnhancer class
 add3DProfileEffect() {
+
     const profileImage = document.querySelector('.profile-image-container');
     const container = document.querySelector('.profile-container');
 
