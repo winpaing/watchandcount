@@ -191,5 +191,93 @@ class WishManager {
     }
 }
 
-// Initialize the wish manager
-const wishManager = new WishManager();
+class LetterGenerator {
+    constructor() {
+        this.initializeElements();
+        this.setupEventListeners();
+        this.templates = [
+            "Dear {name},\n\nThank you for being part of my 30th birthday celebration! Your presence and wishes make this day truly special. I'm grateful for your kindness and friendship.\n\nWith appreciation,\nWin Paing",
+            "Dear {name},\n\nI wanted to express my heartfelt gratitude for celebrating my 30th birthday with me. Your participation means the world to me, and I'm touched by your thoughtfulness.\n\nBest regards,\nWin Paing",
+            "Dear {name},\n\nWhat a joy it is to have you join my 30th birthday celebration! Thank you for making this milestone even more memorable with your presence.\n\nWarmly,\nWin Paing"
+        ];
+    }
+
+    initializeElements() {
+        this.generateBtn = document.getElementById('generate-letter');
+        this.nameInput = document.getElementById('sender-name');
+        this.letterDisplay = document.querySelector('.letter-display');
+    }
+
+    setupEventListeners() {
+        this.generateBtn.addEventListener('click', () => this.generateLetter());
+    }
+
+    generateLetter() {
+        const name = this.nameInput.value.trim();
+        if (!name) {
+            this.showError('Please enter your name');
+            return;
+        }
+
+        const template = this.templates[Math.floor(Math.random() * this.templates.length)];
+        const letter = template.replace('{name}', this.escapeHtml(name));
+        
+        this.displayLetter(letter);
+        this.nameInput.value = '';
+    }
+
+    displayLetter(content) {
+        this.letterDisplay.innerHTML = `
+            <div class="letter-content">
+                <div class="letter-stamp">
+                    <span>30th</span>
+                </div>
+                <div class="letter-header">
+                    ${new Date().toLocaleDateString()}
+                </div>
+                <div class="letter-body">
+                    ${content.replace(/\n/g, '<br>')}
+                </div>
+            </div>
+        `;
+        this.letterDisplay.style.display = 'block';
+    }
+
+    escapeHtml(text) {
+        const div = document.createElement('div');
+        div.textContent = text;
+        return div.innerHTML;
+    }
+
+    showError(message) {
+        const error = document.createElement('div');
+        error.className = 'error-message';
+        error.textContent = message;
+        this.nameInput.parentElement.prepend(error);
+        setTimeout(() => error.remove(), 3000);
+    }
+}
+
+// Initialize letter generator
+const letterGenerator = new LetterGenerator();
+
+// Add this function to create sparkle effects
+function addSparkles() {
+    const wishBox = document.querySelector('.wish-box');
+    const decoration = document.createElement('div');
+    decoration.className = 'wish-decoration';
+    wishBox.appendChild(decoration);
+
+    setInterval(() => {
+        const sparkle = document.createElement('div');
+        sparkle.className = 'sparkle';
+        sparkle.style.left = Math.random() * 100 + '%';
+        sparkle.style.animationDuration = (Math.random() * 2 + 2) + 's';
+        decoration.appendChild(sparkle);
+        
+        setTimeout(() => sparkle.remove(), 3000);
+    }, 300);
+}
+
+// Initialize sparkles when document is loaded
+document.addEventListener('DOMContentLoaded', addSparkles);

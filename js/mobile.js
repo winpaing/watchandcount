@@ -30,15 +30,35 @@ class MobileOptimizer {
     }
 
     optimizeScrolling() {
-        let ticking = false;
-        window.addEventListener('scroll', () => {
-            if (!ticking) {
-                window.requestAnimationFrame(() => {
-                    this.handleScroll();
-                    ticking = false;
+        document.addEventListener('DOMContentLoaded', () => {
+            // Prevent bounce effect on iOS
+            document.body.addEventListener('touchmove', (e) => {
+                if (e.target.closest('.scroll-container')) return;
+                e.preventDefault();
+            }, { passive: false });
+        
+            // Add touch feedback
+            const buttons = document.querySelectorAll('button');
+            buttons.forEach(button => {
+                button.addEventListener('touchstart', () => {
+                    button.style.transform = 'scale(0.98)';
                 });
-                ticking = true;
-            }
+                
+                button.addEventListener('touchend', () => {
+                    button.style.transform = 'scale(1)';
+                });
+            });
+        
+            // Optimize scroll performance
+            let scrollTimeout;
+            window.addEventListener('scroll', () => {
+                clearTimeout(scrollTimeout);
+                document.body.classList.add('is-scrolling');
+        
+                scrollTimeout = setTimeout(() => {
+                    document.body.classList.remove('is-scrolling');
+                }, 150);
+            }, { passive: true });
         });
     }
 

@@ -58,45 +58,43 @@
             </div>
         </section>
 
+        <!-- Add this section before the wishes section -->
+        <section id="birthday-wish" class="glass-effect">
+            <h2>Birthday Wish</h2>
+            <div class="wish-box">
+                <div class="wish-text">
+                    <p class="birthday-message">
+                        Dear Win Paing,
+                    </p>
+                    <p class="wish-content">
+                        On your 30th birthday, may your life be filled with endless joy, remarkable achievements, and beautiful moments. Here's to celebrating three decades of amazing memories and looking forward to countless more adventures ahead. Happy Birthday!
+                    </p>
+                    <div class="wish-animation">
+                        <div class="cake">
+                            <div class="candle">
+                                <div class="flame"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Replace the wishes section with this -->
         <section id="wishes" class="glass-effect">
-            <h2>Send Birthday Wishes</h2>
+            <h2>Generate Thank You Letter</h2>
             <div class="wishes-container">
                 <div class="card-form">
                     <div class="form-header">
-                        <i class="fas fa-gift form-icon"></i>
-                        <h3>Write Your Wish</h3>
+                        <i class="fas fa-envelope-open-text form-icon"></i>
+                        <h3>Get Your Thank You Letter</h3>
                     </div>
-                    <input type="text" id="sender-name" placeholder="Your Name">
-                    <textarea id="wish-message" placeholder="Write your birthday message..."></textarea>
-                    <div class="card-options">
-                        <div class="theme-selector">
-                            <label>Choose Theme</label>
-                            <div class="theme-buttons">
-                                <button class="theme-btn classic" data-theme="theme1">
-                                    <i class="fas fa-star"></i>
-                                </button>
-                                <button class="theme-btn party" data-theme="theme2">
-                                    <i class="fas fa-party-horn"></i>
-                                </button>
-                                <button class="theme-btn elegant" data-theme="theme3">
-                                    <i class="fas fa-crown"></i>
-                                </button>
-                            </div>
-                        </div>
-                        <button id="create-card">
-                            <i class="fas fa-paper-plane"></i>
-                            Send Wish
-                        </button>
-                    </div>
+                    <input type="text" id="sender-name" placeholder="Enter Your Name">
+                    <button id="generate-letter" class="generate-btn">
+                        <i class="fas fa-magic"></i>
+                        Generate Letter
+                    </button>
                 </div>
-                <div class="wishes-display">
-                    <div class="wishes-filter">
-                        <button class="filter-btn active" data-filter="all">All Wishes</button>
-                        <button class="filter-btn" data-filter="recent">Recent</button>
-                        <button class="filter-btn" data-filter="popular">Popular</button>
-                    </div>
-                    <div class="cards-container"></div>
-                </div>
+                <div class="letter-display"></div>
             </div>
         </section>
 
@@ -156,7 +154,6 @@
             </div>
         </div>
     </footer>
-    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
     <script src="script.js"></script>
     <script src="js/profile.js"></script>
     <script src="js/countdown.js"></script>
@@ -165,6 +162,9 @@
     <script src="js/music.js"></script>
     <script src="js/animations.js"></script>
     <!-- Add before closing body tag -->
+    <script src="js/mobile.js"></script>
+    <script src="js/letter.js"></script>
     <script src="js/features.js"></script>
 </body>
 </html>
+<script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
