@@ -11,7 +11,7 @@
     overflow: hidden;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
     transform-origin: center;
-    animation: galleryAppear 0.6s ease-out;
+    animation: galleryFadeIn 0.6s ease-out;
 }
 
 .gallery-item img {
@@ -40,7 +40,7 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    padding: 20px;
+    padding: 1.5rem;
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -60,10 +60,10 @@
     opacity: 1;
 }
 
-@keyframes galleryAppear {
+@keyframes galleryFadeIn {
     from {
         opacity: 0;
-        transform: translateY(30px);
+        transform: translateY(20px);
     }
     to {
         opacity: 1;
@@ -71,77 +71,55 @@
     }
 }
 
-/* Add staggered animation delay for items */
-.gallery-item:nth-child(1) { animation-delay: 0.1s; }
-.gallery-item:nth-child(2) { animation-delay: 0.2s; }
-.gallery-item:nth-child(3) { animation-delay: 0.3s; }
-.gallery-item:nth-child(4) { animation-delay: 0.4s; }
-.gallery-item:nth-child(5) { animation-delay: 0.5s; }
-.gallery-item:nth-child(6) { animation-delay: 0.6s; }
-.gallery-item:nth-child(7) { animation-delay: 0.7s; }
-.gallery-item:nth-child(8) { animation-delay: 0.8s; }
-.gallery-item:nth-child(9) { animation-delay: 0.9s; }
-.gallery-item:nth-child(10) { animation-delay: 1s; }
-.gallery-item:nth-child(11) { animation-delay: 1.1s; }
-.gallery-item:nth-child(12) { animation-delay: 1.2s; }
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
 
-/* Add shimmer effect on hover */
-.gallery-item::after {
+.gallery-item.loading {
+    animation: pulse 1.5s infinite;
+}
+
+/* Add hover effect for filter buttons */
+.filter-btn {
+    position: relative;
+    overflow: hidden;
+}
+
+.filter-btn::after {
     content: '';
     position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: linear-gradient(
-        45deg,
-        transparent 0%,
-        rgba(255, 215, 0, 0.1) 50%,
-        transparent 100%
-    );
-    transform: rotate(45deg);
-    transition: all 0.6s ease;
-    opacity: 0;
-}
-
-.gallery-item:hover::after {
-    opacity: 1;
-    transform: rotate(45deg) translate(50%, 50%);
-}
-
-/* Add responsive animations */
-@media (max-width: 768px) {
-    .gallery-item:hover img {
-        transform: scale(1.05) rotate(1deg);
-    }
-}
-
-@media (prefers-reduced-motion: reduce) {
-    .gallery-item {
-        animation: none;
-    }
-    
-    .gallery-item:hover img {
-        transform: scale(1.05);
-    }
-}
-
-.gallery-overlay {
-    position: absolute;
+    width: 100%;
+    height: 2px;
     bottom: 0;
+    left: -100%;
+    background: #FFD700;
+    transition: all 0.3s ease;
+}
+
+.filter-btn:hover::after {
     left: 0;
-    right: 0;
-    background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
-    padding: 20px;
-    color: white;
+}
+
+/* Add staggered animation for gallery items */
+.gallery-item {
     opacity: 0;
-    transition: opacity 0.3s ease;
+    animation: fadeInScale 0.6s ease forwards;
 }
 
-.gallery-item:hover .gallery-overlay {
-    opacity: 1;
+@keyframes fadeInScale {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
 }
 
+/* Add this to your JavaScript to create staggered animation */
 .gallery-overlay h3 {
     margin: 0;
     font-size: 1.2rem;
@@ -250,4 +228,40 @@
 @keyframes fadeIn {
     from { opacity: 0; }
     to { opacity: 1; }
+}
+
+/* Add specific styling for new categories */
+.gallery-item[data-category="achievement"] .gallery-overlay {
+    background: linear-gradient(
+        to top,
+        rgba(0, 0, 0, 0.9) 0%,
+        rgba(218, 165, 32, 0.4) 60%,
+        transparent 100%
+    );
+}
+
+.gallery-item[data-category="moments"] .gallery-overlay {
+    background: linear-gradient(
+        to top,
+        rgba(0, 0, 0, 0.8) 0%,
+        rgba(255, 192, 203, 0.4) 60%,
+        transparent 100%
+    );
+}
+
+/* Enhance image loading animation */
+.gallery-item img {
+    opacity: 0;
+    animation: imageLoad 0.5s ease forwards;
+}
+
+@keyframes imageLoad {
+    from {
+        opacity: 0;
+        transform: scale(1.1);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
 }
