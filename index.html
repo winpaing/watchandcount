@@ -133,14 +133,48 @@
         </section>
 
     <script src="script.js"></script>
+    <!-- Add music.js to your script imports at the bottom of the body -->
     <script src="js/profile.js"></script>
     <script src="js/countdown.js"></script>
     <script src="js/gallery.js"></script>
     <script src="js/card.js"></script>
     <script src="js/animations.js"></script>
-    <!-- Add before closing body tag -->
     <script src="js/letter.js"></script>
     <script src="js/features.js"></script>
+    <!-- Add this line -->
+    <script src="js/music.js"></script>
 </body>
 </html>
+
+<!-- Update the music player section -->
+<section id="music-player" class="glass-effect">
+    <div class="material-player">
+        <div class="player-header">
+            <div class="song-info">
+                <h3>Happy Birthday Song</h3>
+                <p>Birthday Classics</p>
+            </div>
+        </div>
+        
+        <div class="player-controls">
+            <button class="control-btn" id="prev-btn">
+                <i class="fas fa-step-backward"></i>
+            </button>
+            <button class="control-btn play-btn" id="play-btn">
+                <i class="fas fa-play"></i>
+            </button>
+            <button class="control-btn" id="next-btn">
+                <i class="fas fa-step-forward"></i>
+            </button>
+        </div>
+
+        <div class="progress-bar">
+            <div class="progress"></div>
+            <div class="time-display">
+                <span class="current-time">0:00</span>
+                <span class="duration">0:00</span>
+            </div>
+        </div>
+    </div>
+</section>
 <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
