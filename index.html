@@ -12,6 +12,19 @@
     <link rel="stylesheet" href="css/card.css">
     <link rel="stylesheet" href="css/music.css">
     <link rel="stylesheet" href="css/animations.css">
+    <head>
+        <!-- Add these meta tags -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <meta name="theme-color" content="#1a1a1a">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+        
+        <!-- Add the new CSS file -->
+        <link rel="stylesheet" href="css/responsive.css">
+    </head>
+    
+    <!-- Add before closing body tag -->
+    <script src="js/mobile.js"></script>
 </head>
 <body>
     <div class="animation-container">
@@ -40,7 +53,7 @@
             <div class="profile-container">
                 <div class="profile-image"></div>
                 <h1>Win Paing Soe</h1>
-                <p class="birthday-date">March 22, 1995 - March 22, 2025</p>
+                <p class="birthday-date"> March 22, 2025</p>
                 <p class="celebration-text">Celebrating 30 Amazing Years!</p>
             </div>
         </section>
@@ -105,8 +118,41 @@
                 </div>
             </div>
         </section>
+        <!-- Add this before closing main tag -->
+        <section id="share" class="glass-effect">
+            <h2>Share the Celebration</h2>
+            <div class="share-container">
+                <button class="share-btn facebook">
+                    <i class="fab fa-facebook"></i>
+                    Share
+                </button>
+                <button class="share-btn twitter">
+                    <i class="fab fa-twitter"></i>
+                    Tweet
+                </button>
+                <button class="share-btn instagram">
+                    <i class="fab fa-instagram"></i>
+                    Share
+                </button>
+            </div>
+        </section>
     </main>
 
+    <footer class="glass-effect">
+        <div class="footer-content">
+            <div class="birthday-quote">
+                "Thank you for being part of my 30th birthday celebration!"
+            </div>
+            <div class="social-links">
+                <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
+                <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+            </div>
+            <div class="copyright">
+                © 2025 Win Paing Soe's Birthday Celebration
+            </div>
+        </div>
+    </footer>
     <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
     <script src="script.js"></script>
     <script src="js/profile.js"></script>
@@ -115,5 +161,7 @@
     <script src="js/card.js"></script>
     <script src="js/music.js"></script>
     <script src="js/animations.js"></script>
+    <!-- Add before closing body tag -->
+    <script src="js/features.js"></script>
 </body>
 </html>

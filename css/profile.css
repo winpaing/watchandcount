@@ -2,21 +2,137 @@
     position: relative;
     padding: 3rem;
     text-align: center;
-    transform-style: preserve-3d;
-    perspective: 1000px;
+    /* Add these new styles */
+    .profile-container {
+        transform-style: preserve-3d;
+        perspective: 1000px;
+    }
+    
+    .glare {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        pointer-events: none;
+        z-index: 2;
+    }
+    
+    .profile-particles {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 1;
+    }
+    
+    .mouse-trail {
+        position: fixed;
+        width: 20px;
+        height: 20px;
+        border: 2px solid #FFD700;
+        border-radius: 50%;
+        pointer-events: none;
+        transform: translate(-50%, -50%);
+        transition: all 0.1s ease;
+        z-index: 9999;
+    }
+    
+    .profile-stats {
+        display: flex;
+        justify-content: space-around;
+        margin-top: 2rem;
+        padding: 1rem;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 15px;
+        backdrop-filter: blur(10px);
+    }
+    
+    .stat {
+        text-align: center;
+        padding: 1rem;
+    }
+    
+    .stat-number {
+        font-size: 2.5rem;
+        color: #FFD700;
+        display: block;
+        text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+    }
+    
+    .stat-label {
+        font-size: 1rem;
+        color: #fff;
+        opacity: 0.8;
+    }
+    
+    .celebration-text {
+        position: relative;
+        display: inline-block;
+        color: #FFD700;
+        text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+    }
+    
+    .celebration-text::after {
+        content: '|';
+        position: absolute;
+        right: -8px;
+        animation: blink 0.7s infinite;
+    }
+    
+    @keyframes blink {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0; }
+    }
+    
+    .profile-image:hover {
+        animation: pulseGlow 2s infinite;
+    }
+    
+    @keyframes pulseGlow {
+        0% { box-shadow: 0 0 30px rgba(255, 215, 0, 0.3); }
+        50% { box-shadow: 0 0 50px rgba(255, 215, 0, 0.6); }
+        100% { box-shadow: 0 0 30px rgba(255, 215, 0, 0.3); }
+    }
     transition: transform 0.5s ease;
 }
 
 .profile-image {
-    width: 200px;
-    height: 200px;
+    width: 250px;
+    height: 250px;
     border-radius: 50%;
     margin: 0 auto 2rem;
+    background-image: url('../images/profile.jpg');
     background-size: cover;
     background-position: center;
     border: 5px solid #FFD700;
     box-shadow: 0 0 30px rgba(255, 215, 0, 0.3);
     transition: all 0.5s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.profile-image::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, rgba(255, 215, 0, 0.2), transparent);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.profile-image:hover {
+    transform: scale(1.05) rotate(5deg);
+    box-shadow: 0 0 50px rgba(255, 215, 0, 0.5);
+}
+
+.profile-image:hover::after {
+    opacity: 1;
 }
 
 .profile-sparkle {

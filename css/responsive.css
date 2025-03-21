@@ -1,0 +1,90 @@
+/* Base responsive styles */
+@media (max-width: 768px) {
+    .countdown-container {
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+
+    .countdown-item {
+        min-width: calc(50% - 1rem);
+        padding: 1rem;
+    }
+
+    .gallery-container {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    }
+
+    .music-player {
+        padding: 1rem;
+    }
+
+    .share-container {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .profile-stats {
+        flex-direction: column;
+        gap: 1rem;
+    }
+}
+
+/* Mobile navigation */
+@media (max-width: 576px) {
+    nav ul {
+        flex-direction: column;
+        padding: 0.5rem;
+    }
+
+    nav a {
+        display: block;
+        padding: 0.8rem;
+        margin: 0.3rem;
+    }
+
+    .profile-image {
+        width: 180px;
+        height: 180px;
+    }
+
+    .card-form {
+        padding: 1rem;
+    }
+}
+
+/* Touch device optimizations */
+@media (hover: none) {
+    .card:hover,
+    .gallery-item:hover,
+    .profile-image:hover {
+        transform: none;
+    }
+
+    .control-btn {
+        padding: 1rem;
+    }
+}
+
+/* Landscape mode */
+@media (max-height: 500px) and (orientation: landscape) {
+    .profile-container {
+        padding: 1rem;
+    }
+
+    .countdown-container {
+        padding: 1rem;
+    }
+
+    .profile-image {
+        width: 120px;
+        height: 120px;
+    }
+}
+
+/* High-DPI screens */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .profile-image,
+    .gallery-item img {
+        image-rendering: -webkit-optimize-contrast;
+    }
+}
