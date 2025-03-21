@@ -54,191 +54,66 @@
     text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
 }
 
-.memory-card {
-    position: relative;
-    border-radius: 15px;
-    overflow: hidden;
-    cursor: pointer;
-    transition: transform 0.3s ease;
-}
-
-.memory-card img {
-    width: 100%;
-    height: 250px;
-    object-fit: cover;
-    transition: transform 0.3s ease;
-}
-
-.memory-overlay {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
-    padding: 1.5rem;
-    transform: translateY(100%);
-    transition: transform 0.3s ease;
-}
-
-.memory-card:hover .memory-overlay {
-    transform: translateY(0);
-}
-
-.memory-card:hover img {
-    transform: scale(1.1);
-}
-
-.memory-overlay h3 {
-    color: #fff;
-    margin-bottom: 0.5rem;
-}
-
-.view-btn {
-    background: #FFD700;
-    color: #000;
-    border: none;
-    padding: 0.5rem 1rem;
-    border-radius: 25px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.view-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
-}
-
 .lightbox {
+    display: none;
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
     background: rgba(0, 0, 0, 0.9);
-    display: none;
-    justify-content: center;
-    align-items: center;
     z-index: 1000;
 }
 
 .lightbox.active {
     display: flex;
+    animation: fadeIn 0.3s ease;
 }
 
 .lightbox-content {
     position: relative;
     max-width: 90%;
     max-height: 90vh;
+    margin: auto;
 }
 
 .lightbox img {
     max-width: 100%;
-    max-height: 80vh;
+    max-height: 90vh;
     object-fit: contain;
+    transition: opacity 0.3s ease;
 }
 
-.lightbox .caption {
-    color: #fff;
-    text-align: center;
-    padding: 1rem;
-    font-size: 1.2rem;
-}
-
-.close-btn {
+.close-lightbox {
     position: absolute;
     top: -40px;
     right: 0;
     color: #fff;
     font-size: 2rem;
-    background: none;
-    border: none;
     cursor: pointer;
 }
 
-.nav-btn {
+.lightbox-nav button {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
     background: rgba(255, 255, 255, 0.2);
     color: #fff;
-    padding: 1rem;
     border: none;
+    padding: 15px;
     cursor: pointer;
     border-radius: 50%;
+    transition: all 0.3s ease;
 }
 
-.prev-btn {
-    left: -60px;
+.prev-btn { left: 20px; }
+.next-btn { right: 20px; }
+
+.lightbox-nav button:hover {
+    background: rgba(255, 255, 255, 0.4);
 }
 
-.next-btn {
-    right: -60px;
-}
-
-/* Add these mobile-specific styles */
-@media (max-width: 768px) {
-    .lightbox-content {
-        width: 100%;
-        height: 100vh;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        transition: transform 0.3s ease;
-    }
-
-    .lightbox img {
-        max-height: 70vh;
-        width: auto;
-        touch-action: none;
-    }
-
-    .nav-btn {
-        display: none;
-    }
-
-    .close-btn {
-        top: 20px;
-        right: 20px;
-        font-size: 2.5rem;
-        z-index: 1001;
-    }
-
-    .swipe-indicator {
-        position: absolute;
-        bottom: 20px;
-        left: 50%;
-        transform: translateX(-50%);
-        color: rgba(255, 255, 255, 0.7);
-        font-size: 0.9rem;
-        padding: 8px 16px;
-        background: rgba(0, 0, 0, 0.5);
-        border-radius: 20px;
-        opacity: 0;
-        transition: opacity 0.3s ease;
-    }
-
-    .lightbox.active .swipe-indicator {
-        opacity: 1;
-        animation: fadeOut 2s forwards 1s;
-    }
-
-    @keyframes fadeOut {
-        to {
-            opacity: 0;
-        }
-    }
-
-    .memory-card {
-        height: 200px;
-    }
-
-    .memory-card img {
-        height: 100%;
-    }
-
-    .memory-overlay {
-        transform: translateY(0);
-        background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
-    }
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
 }

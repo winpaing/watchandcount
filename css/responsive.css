@@ -189,7 +189,6 @@
 }
 
 /* Base styles for desktop */
-/* Base Layout */
 main {
     max-width: 1200px;
     margin: 0 auto;
@@ -200,354 +199,141 @@ section {
     margin-bottom: 3rem;
 }
 
-/* Desktop (1024px and above) */
+/* Desktop styles (1024px and above) */
 @media screen and (min-width: 1024px) {
-    .profile-container {
-        max-width: 800px;
-        margin: 0 auto;
+    main {
+        max-width: 1200px;
         padding: 3rem;
     }
 
-    .profile-image {
-        width: 250px;
-        height: 250px;
-    }
-
-    .countdown-container {
-        display: flex;
-        justify-content: center;
-        gap: 2rem;
-    }
-
-    .countdown-item {
-        min-width: 180px;
-    }
-
-    .wishes-container {
-        grid-template-columns: 1fr 2fr;
-    }
-
-    .gallery-container {
-        grid-template-columns: repeat(4, 1fr);
-    }
-}
-
-/* Tablet (768px to 1023px) */
-@media screen and (min-width: 768px) and (max-width: 1023px) {
-    main {
-        padding: 1.5rem;
-    }
-
-    .profile-image {
-        width: 200px;
-        height: 200px;
-    }
-
-    .countdown-container {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 1.5rem;
-    }
-
-    .gallery-container {
-        grid-template-columns: repeat(3, 1fr);
-    }
-
-    .wishes-container {
-        grid-template-columns: 1fr;
-    }
-}
-
-/* Mobile (below 768px) */
-@media screen and (max-width: 767px) {
-    main {
-        padding: 0.5rem;
-        gap: 1rem;
-    }
-
-    section {
-        margin-bottom: 1rem;
-        padding: 1.2rem;
+    .section {
+        margin-bottom: 4rem;
+        padding: 2.5rem;
     }
 
     .profile-container {
-        padding: 1.5rem;
-    }
-
-    .profile-image {
-        width: 140px;
-        height: 140px;
-    }
-
-    h1 { font-size: 1.8rem; }
-    h2 { font-size: 1.5rem; }
-
-    .countdown-container {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 0.8rem;
-        padding: 0.5rem;
-    }
-
-    .countdown-item {
-        padding: 1rem;
-        min-width: unset;
+        max-width: 900px;
+        margin: 0 auto;
     }
 
     .wish-box {
-        margin: 1rem 0.5rem;
-        padding: 1.5rem 1rem;
-    }
-
-    .gallery-container {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 0.8rem;
-    }
-
-    .music-player {
-        padding: 1rem;
-    }
-
-    .player-controls {
-        gap: 1rem;
-    }
-
-    .share-container {
-        flex-direction: column;
-        gap: 1rem;
-    }
-}
-
-/* Small Mobile (below 480px) */
-@media screen and (max-width: 480px) {
-    .countdown-container {
-        grid-template-columns: 1fr;
-    }
-
-    .gallery-container {
-        grid-template-columns: 1fr;
-    }
-
-    .profile-image {
-        width: 120px;
-        height: 120px;
-    }
-
-    h1 { font-size: 1.5rem; }
-    h2 { font-size: 1.3rem; }
-}
-
-/* Touch Device Optimizations */
-@media (hover: none) {
-    body {
-        overscroll-behavior: none;
-    }
-
-    .glass-effect {
-        backdrop-filter: blur(8px);
-    }
-
-    button,
-    .control-btn,
-    .share-btn {
-        padding: 12px;
-        min-height: 44px;
-        user-select: none;
-        -webkit-tap-highlight-color: transparent;
-    }
-
-    input,
-    textarea,
-    select {
-        font-size: 16px;
-        padding: 12px;
-        border-radius: 8px;
-    }
-}
-
-/* Landscape Mode */
-@media screen and (max-height: 500px) and (orientation: landscape) {
-    .profile-container {
-        display: flex;
-        align-items: center;
-        gap: 2rem;
-    }
-
-    .profile-image {
-        width: 120px;
-        height: 120px;
-        margin: 0;
-    }
-
-    .countdown-container {
-        grid-template-columns: repeat(4, 1fr);
-    }
-}
-
-section {
-    margin-bottom: 3rem;
-}
-
-/* Desktop styles (1024px and above) */
-@media screen and (min-width: 1024px) {
-    .profile-container {
+        max-width: 800px;
         padding: 3rem;
     }
 
-    .profile-image {
-        width: 250px;
-        height: 250px;
-    }
-
     .countdown-container {
-        gap: 2rem;
-    }
-
-    .countdown-item {
-        min-width: 180px;
-    }
-
-    .wishes-container {
-        grid-template-columns: 1fr 2fr;
+        justify-content: center;
+        gap: 3rem;
     }
 
     .gallery-container {
         grid-template-columns: repeat(4, 1fr);
+        gap: 2rem;
+    }
+
+    .music-player {
+        max-width: 800px;
+        margin: 0 auto;
     }
 }
 
 /* Tablet styles (768px to 1023px) */
 @media screen and (min-width: 768px) and (max-width: 1023px) {
     main {
-        padding: 1.5rem;
+        padding: 2rem;
     }
 
-    .profile-image {
-        width: 200px;
-        height: 200px;
+    .section {
+        margin-bottom: 3rem;
+        padding: 2rem;
     }
 
     .countdown-container {
-        gap: 1.5rem;
-    }
-
-    .countdown-item {
-        min-width: 150px;
-    }
-
-    .wishes-container {
-        grid-template-columns: 1fr;
+        gap: 2rem;
     }
 
     .gallery-container {
         grid-template-columns: repeat(3, 1fr);
+        gap: 1.5rem;
     }
 }
 
 /* Mobile styles (below 768px) */
 @media screen and (max-width: 767px) {
     main {
-        padding: 0.5rem;
-        gap: 1rem;
-        transition: all 0.3s ease;
+        padding: 1rem;
     }
 
-    section {
-        margin-bottom: 1rem;
-        padding: 1.2rem;
-        transition: transform 0.3s ease;
-    }
-
-    section:active {
-        transform: scale(0.98);
-    }
-
-    .profile-container {
+    .section {
+        margin-bottom: 2rem;
         padding: 1.5rem;
     }
 
+    h1 { font-size: 2rem; }
+    h2 { font-size: 1.5rem; }
+    h3 { font-size: 1.2rem; }
+
     .profile-image {
-        width: 140px;
-        height: 140px;
-        transition: transform 0.3s ease;
-    }
-
-    .countdown-container {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 0.8rem;
-        padding: 0.5rem;
-    }
-
-    .countdown-item {
-        padding: 1rem;
-        min-width: unset;
-        transition: all 0.3s ease;
-    }
-
-    .countdown-item span {
-        font-size: 2.2rem;
+        width: 150px;
+        height: 150px;
     }
 
     .wish-box {
-        margin: 1rem 0.5rem;
-        padding: 1.5rem 1rem;
+        padding: 1.5rem;
     }
 
-    .card-form {
-        padding: 1.2rem;
+    .countdown-container {
+        flex-wrap: wrap;
+        gap: 1rem;
     }
 
-    input, 
-    textarea, 
-    button {
-        -webkit-tap-highlight-color: transparent;
-        touch-action: manipulation;
+    .countdown-item {
+        flex: 1 1 40%;
+        min-width: 120px;
     }
 
     .gallery-container {
-        gap: 0.8rem;
-        padding: 0.5rem;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
     }
 
     .music-player {
         padding: 1rem;
     }
 
-    .player-controls button {
-        min-width: 44px;
-        min-height: 44px;
-        margin: 0 0.5rem;
-    }
-
-    .progress-bar {
-        height: 6px;
+    .control-btn {
+        width: 44px;
+        height: 44px;
     }
 }
 
-/* Touch Device Enhancements */
+/* Small Mobile (below 375px) */
+@media screen and (max-width: 375px) {
+    .countdown-container {
+        flex-direction: column;
+    }
+
+    .countdown-item {
+        width: 100%;
+    }
+
+    .gallery-container {
+        grid-template-columns: 1fr;
+    }
+
+    .profile-image {
+        width: 120px;
+        height: 120px;
+    }
+}
+
+/* Touch Device Optimizations */
 @media (hover: none) {
-    :root {
-        --safe-bottom: env(safe-area-inset-bottom);
-    }
-
-    body {
-        overscroll-behavior: none;
-    }
-
-    main {
-        padding-bottom: calc(1rem + var(--safe-bottom));
-    }
-
-    .glass-effect {
-        backdrop-filter: blur(8px);
-    }
-
-    button,
+    button, 
     .control-btn,
     .share-btn {
-        padding: 12px;
         min-height: 44px;
-        user-select: none;
+        min-width: 44px;
     }
 
     input,
@@ -555,107 +341,37 @@ section {
     select {
         font-size: 16px;
         padding: 12px;
-        border-radius: 8px;
     }
 
-    .scroll-container {
-        -webkit-overflow-scrolling: touch;
-        scroll-behavior: smooth;
-    }
-}
-
-/* Smooth Scrolling */
-@media screen and (max-width: 480px) {
-    html {
-        scroll-behavior: smooth;
+    .card:hover,
+    .button:hover {
+        transform: none;
     }
 
-    .scroll-container {
-        scroll-snap-type: y proximity;
-    }
-
-    section {
-        scroll-snap-align: start;
-    }
-
-    .gallery-container {
-        scroll-snap-type: x mandatory;
-        scroll-padding: 1rem;
-    }
-
-    .gallery-item {
-        scroll-snap-align: center;
+    .button:active,
+    .control-btn:active {
+        transform: scale(0.98);
     }
 }
 
-/* Prevent Text Selection on Mobile */
-@media (max-width: 767px) {
-    .no-select {
-        -webkit-touch-callout: none;
-        -webkit-user-select: none;
-        user-select: none;
+/* Landscape Mode */
+@media (max-height: 500px) and (orientation: landscape) {
+    .profile-container {
+        flex-direction: row;
+        gap: 2rem;
     }
-}
 
-    .countdown-item {
-        min-width: calc(50% - 0.5rem);
+    .countdown-container {
+        flex-wrap: nowrap;
+    }
+
+    .section {
         padding: 1rem;
-    }
-
-    .countdown-item span {
-        font-size: 2.5rem;
-    }
-
-    .countdown-item p {
-        font-size: 1rem;
-    }
-
-    .wishes-container {
-        grid-template-columns: 1fr;
-    }
-
-    .card-form {
-        padding: 1.5rem;
-    }
-
-    .card-options {
-        flex-direction: column;
-        gap: 1rem;
-    }
-
-    .gallery-container {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 1rem;
-    }
-
-    .music-player {
-        padding: 1rem;
-    }
-
-    .player-controls {
-        gap: 1rem;
-    }
-
-    .share-container {
-        flex-direction: column;
-        gap: 1rem;
-    }
-
-    .share-btn {
-        width: 100%;
-    }
-
-    .footer-content {
-        padding: 1.5rem;
-    }
-
-    .birthday-quote {
-        font-size: 1.2rem;
+        margin-bottom: 1rem;
     }
 }
 
-/* Small mobile styles (below 375px) */
-@media screen and (max-width: 375px) {
+@media (max-width: 375px) {
     .countdown-container {
         flex-direction: column;
     }
@@ -669,32 +385,69 @@ section {
     }
 }
 
-/* Handle landscape orientation */
-@media screen and (max-height: 500px) and (orientation: landscape) {
-    .profile-container {
-        flex-direction: row;
-        align-items: center;
-        gap: 2rem;
-    }
-
-    .profile-image {
-        width: 120px;
-        height: 120px;
-        margin: 0;
-    }
+/* Make music player controls bigger */
+.control-btn {
+    padding: 1rem;
+    font-size: 1.8rem;
 }
 
-/* Touch device optimizations */
-@media (hover: none) {
-    .share-btn,
-    .control-btn,
-    .theme-btn {
-        padding: 1rem;
-    }
+/* Adjust countdown display */
+.countdown-container {
+    flex-wrap: wrap;
+}
 
-    input,
-    textarea,
-    button {
-        font-size: 16px;
-    }
+.countdown-item {
+    flex: 1 1 40%;
+    margin: 0.5rem;
+}
+
+.countdown-item span {
+    font-size: 2.5rem;
+}
+
+.countdown-item p {
+    font-size: 1rem;
+}
+
+.wishes-container {
+    grid-template-columns: 1fr;
+}
+
+.card-form {
+    padding: 1.5rem;
+}
+
+.card-options {
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.gallery-container {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+}
+
+.music-player {
+    padding: 1rem;
+}
+
+.player-controls {
+    gap: 1rem;
+}
+
+.share-container {
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.share-btn {
+    width: 100%;
+}
+
+.footer-content {
+    padding: 1.5rem;
+}
+
+.birthday-quote {
+    font-size: 1.2rem;
 }
