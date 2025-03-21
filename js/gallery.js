@@ -4,12 +4,12 @@ document.addEventListener('DOMContentLoaded', () => {
     // Update the image paths in your gallery configuration
     const images = [
         {
-            src: '/images/gallery/birthday.jpg',
+            src: './images/gallery/birthday.jpg',  // Changed from /images/gallery/
             title: 'Birthday Celebration',
             category: 'celebration'
         },
         {
-            src: '/images/gallery/Graduation.jpg',
+            src: './images/gallery/Graduation.jpg',
             title: 'Graduation Day',
             category: 'achievement'
         },
