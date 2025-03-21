@@ -4,85 +4,91 @@
     gap: 2rem;
     padding: 3rem;
     position: relative;
-    overflow: hidden;
 }
 
 .countdown-item {
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
+    background: rgba(60, 60, 60, 0.8);
     padding: 2rem;
     border-radius: 15px;
-    min-width: 120px;
+    min-width: 150px;
     text-align: center;
-    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
     position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease;
 }
 
-.countdown-item.hover {
+.countdown-item::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        45deg,
+        transparent,
+        rgba(255, 215, 0, 0.1),
+        transparent
+    );
+    transform: rotate(45deg);
+    animation: shimmerEffect 3s linear infinite;
+}
+
+.countdown-item:hover {
     transform: translateY(-10px);
-    box-shadow: 0 20px 30px rgba(0, 0, 0, 0.2);
 }
 
-.countdown-number {
-    font-size: 3.5rem;
+.countdown-item span {
+    font-size: 4rem;
     font-weight: bold;
     color: #FFD700;
-    text-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
-    transition: all 0.3s ease;
+    display: block;
+    margin-bottom: 0.5rem;
+    position: relative;
+    animation: pulseNumber 2s infinite;
 }
 
-.countdown-number.animate {
-    animation: numberPop 0.5s ease-out;
+.countdown-item.flip span {
+    animation: flipNumber 0.6s ease-in-out;
+}
+
+/* Add particle effects */
+.countdown-particles {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+@keyframes shimmerEffect {
+    0% { transform: translateX(-150%) rotate(45deg); }
+    100% { transform: translateX(150%) rotate(45deg); }
+}
+
+@keyframes pulseNumber {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+@keyframes flipNumber {
+    0% { transform: rotateX(0); }
+    50% { transform: rotateX(90deg); }
+    100% { transform: rotateX(0); }
+}
+
+@keyframes particleFade {
+    0% { transform: translateY(0) scale(1); opacity: 1; }
+    100% { transform: translateY(-50px) scale(0); opacity: 0; }
 }
 
 .countdown-item p {
-    color: #fff;
-    font-size: 1.2rem;
-    margin-top: 0.5rem;
-    opacity: 0.8;
+    color: #ffffff;
+    font-size: 1.5rem;
+    margin: 0;
 }
 
-.countdown-sparkle {
-    position: absolute;
-    width: 8px;
-    height: 8px;
-    background: #FFD700;
-    border-radius: 50%;
-    pointer-events: none;
-    animation: sparkleFloat 1s ease-out forwards;
-}
-
-.countdown-particle {
-    position: absolute;
-    width: 4px;
-    height: 4px;
-    background: rgba(255, 215, 0, 0.5);
-    border-radius: 50%;
-    pointer-events: none;
-    animation: particleFloat 2s ease-out forwards;
-}
-
-.birthday-message {
-    text-align: center;
-    animation: messageAppear 1s ease-out;
-}
-
-@keyframes numberPop {
-    0% { transform: scale(1.2); opacity: 0; }
-    100% { transform: scale(1); opacity: 1; }
-}
-
-@keyframes sparkleFloat {
-    0% { transform: translate(0, 0) scale(1); opacity: 1; }
-    100% { transform: translate(20px, -20px) scale(0); opacity: 0; }
-}
-
-@keyframes particleFloat {
-    0% { transform: translateY(0); opacity: 1; }
-    100% { transform: translateY(-50px); opacity: 0; }
-}
-
-@keyframes messageAppear {
-    from { transform: scale(0.8); opacity: 0; }
-    to { transform: scale(1); opacity: 1; }
+/* Add yellow glow effect for numbers */
+#days, #hours, #minutes, #seconds {
+    text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
 }
