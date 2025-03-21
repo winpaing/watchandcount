@@ -206,3 +206,15 @@ class ProfileEnhancer {
 
 // Initialize profile section
 const profileSection = new ProfileSection();
+
+document.addEventListener('DOMContentLoaded', () => {
+    const profileWrapper = document.querySelector('.profile-image-wrapper');
+    
+    profileWrapper.addEventListener('click', () => {
+        profileWrapper.classList.add('rotating');
+        
+        setTimeout(() => {
+            profileWrapper.classList.remove('rotating');
+        }, 1000);
+    });
+});

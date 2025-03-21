@@ -32,17 +32,58 @@ class BackgroundAnimations {
     }
 
     createConfetti() {
-        const colors = ['#ff0000', '#00ff00', '#0000ff', '#ffff00', '#ff00ff'];
-        setInterval(() => {
-            const confetti = document.createElement('div');
-            confetti.className = 'confetti';
-            confetti.style.left = `${Math.random() * 100}%`;
-            confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-            confetti.style.transform = `rotate(${Math.random() * 360}deg)`;
-            this.animationContainer.appendChild(confetti);
-            
-            setTimeout(() => confetti.remove(), 6000);
-        }, 100);
+        class ConfettiAnimation {
+            constructor() {
+                this.confetti = [];
+                this.container = document.querySelector('.confetti-container');
+                this.colors = ['#FFD700', '#FFA500', '#FF69B4', '#00CED1', '#98FB98'];
+                this.createConfetti();
+                this.animate();
+            }
+
+            createConfetti() {
+                for (let i = 0; i < 50; i++) {
+                    const confetti = document.createElement('div');
+                    confetti.className = 'confetti';
+                    confetti.style.backgroundColor = this.colors[Math.floor(Math.random() * this.colors.length)];
+                    confetti.style.left = Math.random() * 100 + '%';
+                    confetti.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                    confetti.style.opacity = Math.random();
+                    confetti.style.transform = `rotate(${Math.random() * 360}deg)`;
+                    
+                    this.container.appendChild(confetti);
+                    this.confetti.push({
+                        element: confetti,
+                        x: Math.random() * 100,
+                        y: -20,
+                        speed: Math.random() * 3 + 2,
+                        rotation: Math.random() * 360,
+                        rotationSpeed: Math.random() * 10 - 5
+                    });
+                }
+            }
+
+            animate() {
+                this.confetti.forEach(conf => {
+                    conf.y += conf.speed;
+                    conf.rotation += conf.rotationSpeed;
+                    
+                    if (conf.y > 120) {
+                        conf.y = -20;
+                        conf.x = Math.random() * 100;
+                    }
+                    
+                    conf.element.style.transform = `translate(${conf.x}%, ${conf.y}%) rotate(${conf.rotation}deg)`;
+                });
+                
+                requestAnimationFrame(() => this.animate());
+            }
+        }
+        
+        // Initialize animations when document is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            new ConfettiAnimation();
+        });
     }
 
     // Add to init() method

@@ -128,7 +128,38 @@
     position: absolute;
     width: 10px;
     height: 10px;
-    animation: confettiFall 6s linear infinite;
+    pointer-events: none;
+}
+
+@keyframes confettiFall {
+    0% {
+        transform: translateY(-100%) rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(1000%) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+.confetti {
+    animation: confettiFall linear infinite;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .header-title {
+        font-size: 2rem;
+    }
+    
+    .header-subtitle {
+        font-size: 1.2rem;
+    }
+    
+    .circle-animation {
+        width: 200px;
+        height: 200px;
+    }
 }
 
 @keyframes sparkleFloat {
