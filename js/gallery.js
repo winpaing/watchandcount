@@ -152,4 +152,3 @@ style.textContent = `
 `;
 document.head.appendChild(style);
 new GalleryManager();
-});
