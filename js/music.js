@@ -4,7 +4,8 @@ class MusicPlayer {
             {
                 title: 'Happy Birthday Song',
                 artist: 'Birthday Classics',
-                file: '../assets/music/happy_birthday.mp3'
+                // Update path for GitHub Pages
+                file: 'music/happy_birthday.mp3'
             }
         ];
         
@@ -17,7 +18,12 @@ class MusicPlayer {
     }
 
     initPlayer() {
-        this.audio.src = this.playlist[this.currentTrack].file;
+        // Add base URL for GitHub Pages
+        const baseUrl = window.location.hostname === 'winpaing.github.io' 
+            ? '/watchandcount/'
+            : '/';
+            
+        this.audio.src = baseUrl + this.playlist[this.currentTrack].file;
         this.audio.load();
         
         // Debug audio loading
