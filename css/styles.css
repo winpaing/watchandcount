@@ -120,3 +120,301 @@
 .profile-image-wrapper.rotating {
     animation: rotateProfile 1s ease-in-out;
 }
+
+
+/* Remove these styles */
+.share-section,
+.share-buttons,
+.share-btn {
+    /* Remove all share-related styles */
+}
+
+
+.footer {
+    background: rgba(0, 0, 0, 0.8);
+    padding: 2rem 0;
+    margin-top: 4rem;
+    backdrop-filter: blur(10px);
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 0 1rem;
+}
+
+.thank-you-message {
+    font-size: 1.2rem;
+    color: #fff;
+    margin-bottom: 1rem;
+}
+
+.copyright {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.9rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .thank-you-message {
+        font-size: 1rem;
+    }
+    
+    .copyright {
+        font-size: 0.8rem;
+    }
+}
+
+/* Remove these styles */
+#music-player,
+.music-container,
+.music-info,
+.music-note,
+.time {
+    /* Remove all music player related styles */
+}
+
+
+.profile-container {
+    text-align: center;
+    padding: 2rem;
+    position: relative;
+    animation: fadeIn 1s ease-out;
+}
+
+.profile-image-container {
+    width: 250px;
+    height: 250px;
+    margin: 0 auto 2rem;
+    position: relative;
+    border-radius: 50%;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.profile-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.profile-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, rgba(255, 215, 0, 0.2), transparent);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.profile-border {
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    right: -5px;
+    bottom: -5px;
+    border: 3px solid #FFD700;
+    border-radius: 50%;
+    animation: rotate 10s linear infinite;
+}
+
+.profile-glow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 50%;
+    box-shadow: 0 0 30px rgba(255, 215, 0, 0.3);
+    animation: pulse 2s ease-in-out infinite;
+}
+
+.profile-title {
+    color: #FFD700;
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: slideUp 0.8s ease-out forwards 0.5s;
+}
+
+.profile-subtitle {
+    color: #fff;
+    font-size: 1.5rem;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: slideUp 0.8s ease-out forwards 0.7s;
+}
+
+/* Hover Effects */
+.profile-image-container:hover .profile-image {
+    transform: scale(1.1);
+}
+
+.profile-image-container:hover .profile-overlay {
+    opacity: 1;
+}
+
+/* Keyframe Animations */
+@keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 0.5;
+    }
+    50% {
+        transform: scale(1.05);
+        opacity: 0.8;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Add sparkle effect */
+.sparkle {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: #FFD700;
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+@keyframes sparkle {
+    0% {
+        transform: translate(0, 0) scale(0);
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        transform: translate(var(--tx), var(--ty)) scale(1);
+        opacity: 0;
+    }
+}
+
+.profile-title {
+    color: #FFD700;
+    font-size: 2.5rem;
+    margin: 1rem 0;
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+    animation: glowText 3s ease-in-out infinite;
+}
+
+@keyframes rotateRing {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+@keyframes sparkleFloat {
+    0%, 100% {
+        transform: translateY(0) scale(1);
+        opacity: 0;
+    }
+    50% {
+        transform: translateY(-20px) scale(1.5);
+        opacity: 1;
+    }
+}
+
+@keyframes glowText {
+    0%, 100% {
+        text-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+    }
+    50% {
+        text-shadow: 0 0 20px rgba(255, 215, 0, 0.6),
+                     0 0 30px rgba(255, 215, 0, 0.4);
+    }
+}
+
+.profile-image-container:hover {
+    transform: scale(1.05);
+}
+
+.profile-image-container:hover .ring {
+    animation-play-state: paused;
+}
+
+.profile-glow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 50%;
+    box-shadow: 0 0 30px rgba(255, 215, 0, 0.3);
+    animation: pulseGlow 2s ease-in-out infinite;
+}
+
+.profile-title {
+    color: #FFD700;
+    font-size: 2.5rem;
+    margin: 1rem 0;
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+}
+
+.profile-subtitle {
+    color: #fff;
+    font-size: 1.5rem;
+    opacity: 0.9;
+    margin-bottom: 2rem;
+}
+
+@keyframes rotateRing {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+@keyframes pulseGlow {
+    0%, 100% {
+        opacity: 0.5;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.8;
+        transform: scale(1.05);
+    }
+}
+
+/* Add artistic effect to profile image */
+.profile-image-container::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, rgba(255, 0, 0, 0.2), rgba(0, 255, 255, 0.2));
+    border-radius: 50%;
+    mix-blend-mode: overlay;
+    z-index: 2;
+}

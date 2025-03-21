@@ -124,5 +124,32 @@ class GalleryManager {
 
 // Initialize gallery
 document.addEventListener('DOMContentLoaded', () => {
-    new GalleryManager();
+    const galleryItems = document.querySelectorAll('.gallery-item');
+
+    galleryItems.forEach(item => {
+        const img = item.querySelector('img');
+        
+        // Add loading state before image loads
+        item.classList.add('loading');
+
+        img.addEventListener('load', () => {
+            // Remove loading state after image loads
+            item.classList.remove('loading');
+            
+            // Add fade-in animation
+            img.style.animation = 'fadeIn 0.5s ease forwards';
+        });
+    });
+});
+
+// Add this to your existing CSS
+const style = document.createElement('style');
+style.textContent = `
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+`;
+document.head.appendChild(style);
+new GalleryManager();
 });

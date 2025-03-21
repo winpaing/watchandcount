@@ -30,11 +30,13 @@
     <main>
         <section id="profile" class="glass-effect">
             <div class="profile-container">
-                <div class="profile-image-wrapper">
+                <div class="profile-image-container">
+                    <div class="profile-ring"></div>
+                    <div class="profile-glow"></div>
                     <img src="images/profile.jpg" alt="Win Paing Soe" class="profile-image">
                 </div>
-                <h1>Win Paing Soe</h1>
-                <p class="celebration-text">Celebrating 30 Amazing Years!</p>
+                <h1 class="profile-title">Win Paing Soe</h1>
+                <p class="profile-subtitle">Celebrating 30 Amazing Years!</p>
             </div>
         </section>
 
@@ -101,59 +103,50 @@
         </section>
 
         <section id="gallery" class="glass-effect">
-            <h2>Memory Gallery</h2>
-            <div class="gallery-container"></div>
+            <h2 class="section-title">Memory Gallery</h2>
+            <div class="gallery-container">
+                <div class="gallery-item">
+                    <img src="images/profile.jpg" alt="Profile" loading="lazy">
+                    <div class="gallery-caption">Profile</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/child.jpg" alt="Childhood Memories" loading="lazy">
+                    <div class="gallery-caption">Childhood Memories</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/flower.jpg" alt="Beautiful Flowers" loading="lazy">
+                    <div class="gallery-caption">Beautiful Flowers</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/student_uniform.jpg" alt="Student Days" loading="lazy">
+                    <div class="gallery-caption">Student Days</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/uni_team.jpg" alt="University Team" loading="lazy">
+                    <div class="gallery-caption">University Team</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/view.jpg" alt="Scenic View" loading="lazy">
+                    <div class="gallery-caption">Beautiful landscapes</div>
+                </div>
+            </div>
         </section>
 
-        <section id="music" class="glass-effect">
-            <h2>Birthday Playlist</h2>
-            <div class="music-player">
-                <div class="music-info">
-                    <h3 id="song-title"></h3>
-                    <div class="progress-bar">
-                        <div class="progress"></div>
-                    </div>
-                </div>
-                <div class="player-controls">
-                    <button id="prev" class="control-btn"><i class="fas fa-backward"></i></button>
-                    <button id="play" class="control-btn"><i class="fas fa-play"></i></button>
-                    <button id="next" class="control-btn"><i class="fas fa-forward"></i></button>
-                </div>
-            </div>
-        </section>
-        <!-- Add this before closing main tag -->
-        <section id="share" class="glass-effect">
+    
+        <div class="share-section glass-effect">
             <h2>Share the Celebration</h2>
-            <div class="share-container">
-                <button class="share-btn facebook">
-                    <i class="fab fa-facebook"></i>
-                    Share
-                </button>
-                <button class="share-btn twitter">
-                    <i class="fab fa-twitter"></i>
-                    Tweet
-                </button>
-                <button class="share-btn instagram">
-                    <i class="fab fa-instagram"></i>
-                    Share
-                </button>
+            <div class="share-buttons">
+                <button class="share-btn facebook">Share</button>
+                <button class="share-btn twitter">Tweet</button>
+                <button class="share-btn instagram">Share</button>
             </div>
-        </section>
+        </div>
     </main>
 
-    <footer class="glass-effect">
+    <footer class="footer">
         <div class="footer-content">
-            <div class="birthday-quote">
-                "Thank you for being part of my 30th birthday celebration!"
-            </div>
-            <div class="social-links">
-                <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
-                <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
-                <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
-            </div>
-            <div class="copyright">
-                © 2025 Win Paing Soe's Birthday Celebration
-            </div>
+            <p class="thank-you-message">"Thank you for being part of my 30th birthday celebration!"</p>
+            <p class="copyright">© 2025 Win Paing Soe's Birthday Celebration</p>
         </div>
     </footer>
     <script src="script.js"></script>
@@ -161,7 +154,6 @@
     <script src="js/countdown.js"></script>
     <script src="js/gallery.js"></script>
     <script src="js/card.js"></script>
-    <script src="js/music.js"></script>
     <script src="js/animations.js"></script>
     <!-- Add before closing body tag -->
     <script src="js/letter.js"></script>
@@ -169,3 +161,4 @@
 </body>
 </html>
 <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+<!-- Remove this section -->

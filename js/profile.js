@@ -185,22 +185,37 @@ class ProfileEnhancer {
     }
     // Add this to your existing ProfileEnhancer class
     addSparkleEffect() {
-        const profileImage = document.querySelector('.profile-image');
-        const sparklesContainer = document.createElement('div');
-        sparklesContainer.className = 'profile-sparkles';
-        profileImage.appendChild(sparklesContainer);
-    
-        setInterval(() => {
-            const sparkle = document.createElement('div');
-            sparkle.className = 'sparkle';
-            sparkle.style.left = Math.random() * 100 + '%';
-            sparkle.style.top = Math.random() * 100 + '%';
-            sparkle.style.setProperty('--tx', (Math.random() * 100 - 50) + 'px');
-            sparkle.style.setProperty('--ty', (Math.random() * 100 - 50) + 'px');
+        document.addEventListener('DOMContentLoaded', () => {
+            const profileContainer = document.querySelector('.profile-container');
+            const sparklesContainer = document.createElement('div');
+            sparklesContainer.className = 'profile-sparkles';
             
-            sparklesContainer.appendChild(sparkle);
-            setTimeout(() => sparkle.remove(), 1500);
-        }, 100);
+            // Create rotating rings
+            const ringsContainer = document.createElement('div');
+            ringsContainer.className = 'profile-rings';
+            for (let i = 0; i < 3; i++) {
+                const ring = document.createElement('div');
+                ring.className = 'ring';
+                ringsContainer.appendChild(ring);
+            }
+            
+            // Create sparkles
+            function createSparkle() {
+                const sparkle = document.createElement('div');
+                sparkle.className = 'sparkle';
+                sparkle.style.left = Math.random() * 100 + '%';
+                sparkle.style.animationDelay = Math.random() * 2 + 's';
+                sparklesContainer.appendChild(sparkle);
+                
+                setTimeout(() => sparkle.remove(), 2000);
+            }
+            
+            // Add sparkles periodically
+            setInterval(createSparkle, 300);
+            
+            profileContainer.appendChild(ringsContainer);
+            profileContainer.appendChild(sparklesContainer);
+        });
     }
 }
 
@@ -216,5 +231,34 @@ document.addEventListener('DOMContentLoaded', () => {
         setTimeout(() => {
             profileWrapper.classList.remove('rotating');
         }, 1000);
+    });
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    const profileContainer = document.querySelector('.profile-container');
+    
+    // Add sparkle effect on hover
+    profileContainer.addEventListener('mousemove', (e) => {
+        const sparkle = document.createElement('div');
+        sparkle.className = 'sparkle';
+        
+        // Get position relative to container
+        const rect = profileContainer.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        
+        sparkle.style.left = x + 'px';
+        sparkle.style.top = y + 'px';
+        
+        // Random movement
+        sparkle.style.setProperty('--tx', (Math.random() * 100 - 50) + 'px');
+        sparkle.style.setProperty('--ty', (Math.random() * -100 - 20) + 'px');
+        
+        sparkle.style.animation = 'sparkle 1s ease-in-out forwards';
+        
+        profileContainer.appendChild(sparkle);
+        
+        // Remove sparkle after animation
+        setTimeout(() => sparkle.remove(), 1000);
     });
 });
