@@ -72,140 +72,98 @@ class BirthdayWishes {
 
 class WishManager {
     constructor() {
-        this.wishes = JSON.parse(localStorage.getItem('wishes') || '[]');
+        this.wishes = [];
         this.selectedTheme = 'theme1';
         this.initializeElements();
         this.setupEventListeners();
-        this.renderWishes();
     }
 
     initializeElements() {
-        this.form = document.querySelector('.card-form');
+        this.senderName = document.getElementById('sender-name');
+        this.wishMessage = document.getElementById('wish-message');
+        this.sendButton = document.getElementById('create-card');
         this.cardsContainer = document.querySelector('.cards-container');
-        this.themeButtons = document.querySelectorAll('.theme-btn');
-        this.filterButtons = document.querySelectorAll('.filter-btn');
     }
 
     setupEventListeners() {
-        document.getElementById('create-card').addEventListener('click', () => this.handleWishSubmit());
-        
-        this.themeButtons.forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                this.selectedTheme = e.target.closest('.theme-btn').dataset.theme;
-                this.updateThemeSelection();
-            });
-        });
-
-        this.filterButtons.forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                this.filterWishes(e.target.dataset.filter);
-                this.updateFilterSelection(e.target);
-            });
+        this.sendButton.addEventListener('click', () => {
+            this.handleWishSubmit();
         });
     }
 
     handleWishSubmit() {
-        const name = document.getElementById('sender-name').value.trim();
-        const message = document.getElementById('wish-message').value.trim();
+        const name = this.senderName.value.trim();
+        const message = this.wishMessage.value.trim();
 
-        if (!this.validateInput(name, message)) return;
+        if (!name || !message) {
+            this.showNotification('Please fill in all fields', 'error');
+            return;
+        }
 
         const wish = {
             id: Date.now(),
-            name,
-            message,
-            theme: this.selectedTheme,
-            timestamp: new Date().toISOString(),
-            likes: 0
+            name: name,
+            message: message,
+            timestamp: new Date().toISOString()
         };
 
-        this.addWish(wish);
+        this.addWishToDisplay(wish);
+        this.showThankYouCard(name);
         this.resetForm();
-        this.showSuccessMessage();
     }
 
-    validateInput(name, message) {
-        if (!name || !message) {
-            this.showError('Please fill in all fields');
-            return false;
-        }
-        if (message.length > 200) {
-            this.showError('Message is too long (max 200 characters)');
-            return false;
-        }
-        return true;
-    }
-
-    addWish(wish) {
-        this.wishes.unshift(wish);
-        localStorage.setItem('wishes', JSON.stringify(this.wishes));
-        this.renderWish(wish, true);
-    }
-
-    renderWish(wish, isNew = false) {
-        const card = document.createElement('div');
-        card.className = `wish-card ${wish.theme} ${isNew ? 'new-wish' : ''}`;
-        card.innerHTML = `
-            <div class="wish-header">
+    addWishToDisplay(wish) {
+        const wishCard = document.createElement('div');
+        wishCard.className = 'wish-card';
+        wishCard.innerHTML = `
+            <div class="wish-content">
                 <h4>${this.escapeHtml(wish.name)}</h4>
+                <p>${this.escapeHtml(wish.message)}</p>
                 <span class="wish-time">${this.formatTime(wish.timestamp)}</span>
-            </div>
-            <p class="wish-message">${this.escapeHtml(wish.message)}</p>
-            <div class="wish-footer">
-                <button class="like-btn" data-id="${wish.id}">
-                    <i class="fas fa-heart"></i>
-                    <span>${wish.likes}</span>
-                </button>
             </div>
         `;
 
-        if (isNew) {
-            this.cardsContainer.prepend(card);
-        } else {
-            this.cardsContainer.appendChild(card);
-        }
-
-        this.setupCardInteractions(card, wish.id);
+        this.cardsContainer.insertBefore(wishCard, this.cardsContainer.firstChild);
+        wishCard.classList.add('card-appear');
     }
 
-    setupCardInteractions(card, wishId) {
-        const likeBtn = card.querySelector('.like-btn');
-        likeBtn.addEventListener('click', () => this.handleLike(wishId, likeBtn));
+    showThankYouCard(name) {
+        const messages = [
+            "Thank you for your wonderful birthday wish!",
+            "I appreciate your kind birthday message!",
+            "Thanks for making my birthday special!",
+            "Your birthday wish means a lot to me!",
+            "Thank you for being part of my celebration!"
+        ];
 
-        card.addEventListener('mouseenter', () => this.addSparkleEffect(card));
+        const randomMessage = messages[Math.floor(Math.random() * messages.length)];
+        
+        const thankYouCard = document.createElement('div');
+        thankYouCard.className = 'thank-you-modal';
+        thankYouCard.innerHTML = `
+            <div class="thank-you-card">
+                <div class="card-content">
+                    <i class="fas fa-gift gift-icon"></i>
+                    <h3>Dear ${this.escapeHtml(name)}</h3>
+                    <p>${randomMessage}</p>
+                    <p class="signature">Win Paing</p>
+                    <button class="close-card">Close</button>
+                </div>
+            </div>
+        `;
+
+        document.body.appendChild(thankYouCard);
+        setTimeout(() => thankYouCard.classList.add('show'), 100);
+
+        thankYouCard.querySelector('.close-card').addEventListener('click', () => {
+            thankYouCard.classList.remove('show');
+            setTimeout(() => thankYouCard.remove(), 300);
+        });
     }
 
-    handleLike(wishId, button) {
-        const wish = this.wishes.find(w => w.id === wishId);
-        if (wish) {
-            wish.likes++;
-            button.querySelector('span').textContent = wish.likes;
-            localStorage.setItem('wishes', JSON.stringify(this.wishes));
-            button.classList.add('liked');
-        }
-    }
-
-    addSparkleEffect(card) {
-        for (let i = 0; i < 3; i++) {
-            const sparkle = document.createElement('div');
-            sparkle.className = 'card-sparkle';
-            card.appendChild(sparkle);
-            setTimeout(() => sparkle.remove(), 1000);
-        }
-    }
-
-    filterWishes(filter) {
-        let filteredWishes = [...this.wishes];
-        switch(filter) {
-            case 'recent':
-                filteredWishes = filteredWishes.slice(0, 5);
-                break;
-            case 'popular':
-                filteredWishes.sort((a, b) => b.likes - a.likes);
-                break;
-        }
-        this.cardsContainer.innerHTML = '';
-        filteredWishes.forEach(wish => this.renderWish(wish));
+    resetForm() {
+        this.senderName.value = '';
+        this.wishMessage.value = '';
     }
 
     escapeHtml(text) {
@@ -215,31 +173,23 @@ class WishManager {
     }
 
     formatTime(timestamp) {
-        return new Intl.RelativeTimeFormat('en', { numeric: 'auto' })
-            .format(-Math.round((Date.now() - new Date(timestamp)) / 60000), 'minutes');
+        const date = new Date(timestamp);
+        return date.toLocaleDateString('en-US', {
+            month: 'short',
+            day: 'numeric',
+            hour: '2-digit',
+            minute: '2-digit'
+        });
     }
 
-    showError(message) {
-        const error = document.createElement('div');
-        error.className = 'error-message';
-        error.textContent = message;
-        this.form.prepend(error);
-        setTimeout(() => error.remove(), 3000);
-    }
-
-    showSuccessMessage() {
-        const success = document.createElement('div');
-        success.className = 'success-message';
-        success.textContent = 'Your wish has been sent! ✨';
-        this.form.prepend(success);
-        setTimeout(() => success.remove(), 3000);
-    }
-
-    resetForm() {
-        document.getElementById('sender-name').value = '';
-        document.getElementById('wish-message').value = '';
+    showNotification(message, type) {
+        const notification = document.createElement('div');
+        notification.className = `notification ${type}`;
+        notification.textContent = message;
+        document.body.appendChild(notification);
+        setTimeout(() => notification.remove(), 3000);
     }
 }
 
-// Initialize wish manager
+// Initialize the wish manager
 const wishManager = new WishManager();
