@@ -50,3 +50,92 @@ function randomFireworks() {
 }
 
 setInterval(randomFireworks, 3000);
+
+
+class PartyAnimations {
+    constructor() {
+        this.animationContainer = document.querySelector('.animation-container');
+        this.initializeEffects();
+    }
+
+    initializeEffects() {
+        this.createSparkles();
+        this.createConfetti();
+        this.enhancedBalloons();
+        this.addScrollEffects();
+    }
+
+    createSparkles() {
+        setInterval(() => {
+            const sparkle = document.createElement('div');
+            sparkle.className = 'sparkle';
+            sparkle.style.left = `${Math.random() * 100}%`;
+            sparkle.style.top = `${Math.random() * 100}%`;
+            this.animationContainer.appendChild(sparkle);
+            
+            setTimeout(() => sparkle.remove(), 1500);
+        }, 200);
+    }
+
+    createConfetti() {
+        const colors = ['#FF69B4', '#FFD700', '#FF6B6B', '#4ECDC4', '#87CEEB'];
+        
+        setInterval(() => {
+            const confetti = document.createElement('div');
+            confetti.className = 'confetti';
+            confetti.style.left = `${Math.random() * 100}%`;
+            confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+            confetti.style.transform = `rotate(${Math.random() * 360}deg)`;
+            
+            this.animationContainer.appendChild(confetti);
+            setTimeout(() => confetti.remove(), 4000);
+        }, 300);
+    }
+
+    enhancedBalloons() {
+        setInterval(() => {
+            const balloon = document.createElement('div');
+            balloon.className = 'balloon';
+            balloon.style.left = `${Math.random() * 100}%`;
+            balloon.style.backgroundColor = `hsl(${Math.random() * 360}, 70%, 50%)`;
+            balloon.style.animationDelay = `${Math.random() * 2}s`;
+            
+            this.animationContainer.appendChild(balloon);
+            setTimeout(() => balloon.remove(), 15000);
+        }, 2000);
+    }
+
+    addScrollEffects() {
+        const sections = document.querySelectorAll('section');
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.2 });
+
+        sections.forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(50px)';
+            section.style.transition = 'all 0.8s ease-out';
+            observer.observe(section);
+        });
+    }
+}
+
+// Initialize animations
+const partyAnimations = new PartyAnimations();
+
+// Add mouse trail effect
+document.addEventListener('mousemove', (e) => {
+    const trail = document.createElement('div');
+    trail.className = 'sparkle';
+    trail.style.left = e.pageX + 'px';
+    trail.style.top = e.pageY + 'px';
+    document.body.appendChild(trail);
+    
+    setTimeout(() => trail.remove(), 1000);
+});

@@ -4,12 +4,73 @@
     height: 100%;
 }
 
+/* Add sparkles effect */
+.sparkle {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background-color: #fff;
+    animation: sparkle 1.5s linear infinite;
+    pointer-events: none;
+}
+
+/* Add confetti */
+.confetti {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    animation: confetti-fall 4s linear infinite;
+}
+
+/* Enhanced balloon animation */
 .balloon {
     position: absolute;
-    width: 30px;
-    height: 40px;
-    border-radius: 50%;
-    animation: float 15s linear infinite;
+    width: 40px;
+    height: 50px;
+    animation: float 15s ease-in-out infinite;
+    transform-origin: bottom center;
+}
+
+.balloon::before {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    width: 2px;
+    height: 20px;
+    background: rgba(255, 255, 255, 0.7);
+    transform: translateX(-50%);
+}
+
+@keyframes sparkle {
+    0%, 100% { transform: scale(0); opacity: 0; }
+    50% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes confetti-fall {
+    0% { transform: translateY(-100vh) rotate(0deg); }
+    100% { transform: translateY(100vh) rotate(360deg); }
+}
+
+/* Add 3D rotation effect for cards */
+.card {
+    transform-style: preserve-3d;
+    transition: transform 0.5s ease;
+}
+
+.card:hover {
+    transform: rotateY(10deg) rotateX(5deg);
+}
+
+/* Add glow effect for profile */
+.profile-container {
+    animation: glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+    from { box-shadow: 0 0 10px rgba(255, 215, 0, 0.2); }
+    to { box-shadow: 0 0 20px rgba(255, 215, 0, 0.5); }
 }
 
 .firework {
