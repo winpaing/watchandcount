@@ -1,92 +1,53 @@
-.balloons {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-}
-
-/* Add sparkles effect */
-.sparkle {
-    position: absolute;
-    width: 4px;
-    height: 4px;
-    border-radius: 50%;
-    background-color: #fff;
-    animation: sparkle 1.5s linear infinite;
-    pointer-events: none;
-}
-
-/* Add confetti */
-.confetti {
-    position: absolute;
-    width: 10px;
-    height: 10px;
-    animation: confetti-fall 4s linear infinite;
-}
-
-/* Enhanced balloon animation */
 .balloon {
     position: absolute;
+    bottom: -50px;
     width: 40px;
     height: 50px;
-    animation: float 15s ease-in-out infinite;
-    transform-origin: bottom center;
-}
-
-.balloon::before {
-    content: '';
-    position: absolute;
-    bottom: -10px;
-    left: 50%;
-    width: 2px;
-    height: 20px;
-    background: rgba(255, 255, 255, 0.7);
-    transform: translateX(-50%);
-}
-
-@keyframes sparkle {
-    0%, 100% { transform: scale(0); opacity: 0; }
-    50% { transform: scale(1); opacity: 1; }
-}
-
-@keyframes confetti-fall {
-    0% { transform: translateY(-100vh) rotate(0deg); }
-    100% { transform: translateY(100vh) rotate(360deg); }
-}
-
-/* Add 3D rotation effect for cards */
-.card {
-    transform-style: preserve-3d;
-    transition: transform 0.5s ease;
-}
-
-.card:hover {
-    transform: rotateY(10deg) rotateX(5deg);
-}
-
-/* Add glow effect for profile */
-.profile-container {
-    animation: glow 2s ease-in-out infinite alternate;
-}
-
-@keyframes glow {
-    from { box-shadow: 0 0 10px rgba(255, 215, 0, 0.2); }
-    to { box-shadow: 0 0 20px rgba(255, 215, 0, 0.5); }
+    border-radius: 50%;
+    animation: floatUp 10s linear;
 }
 
 .firework {
     position: absolute;
-    width: 5px;
-    height: 5px;
+    width: 6px;
+    height: 6px;
     border-radius: 50%;
+    animation: explode 1s ease-out;
 }
 
-@keyframes float {
-    0% {
-        transform: translateY(100vh) translateX(0);
+.star {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: #FFD700;
+    border-radius: 50%;
+    animation: twinkle 2s infinite;
+}
+
+.diamond {
+    position: absolute;
+    font-size: 24px;
+    content: '💎';
+    animation: floatDown 8s linear;
+}
+
+.cake {
+    position: absolute;
+    animation: floatDiagonal 6s linear;
+}
+
+.candle {
+    position: absolute;
+    animation: floatUpAndFlicker 7s linear;
+}
+
+@keyframes floatUp {
+    from {
+        transform: translateY(0) rotate(0deg);
         opacity: 1;
     }
-    100% {
-        transform: translateY(-100vh) translateX(var(--x-move));
+    to {
+        transform: translateY(-100vh) rotate(360deg);
         opacity: 0;
     }
 }
@@ -94,10 +55,111 @@
 @keyframes explode {
     0% {
         transform: scale(1);
+        background: #FFD700;
         opacity: 1;
     }
     100% {
         transform: scale(30);
+        background: #FF69B4;
         opacity: 0;
+    }
+}
+
+@keyframes floatDown {
+    from {
+        transform: translateY(-100vh) rotate(0deg);
+        opacity: 1;
+    }
+    to {
+        transform: translateY(100vh) rotate(720deg);
+        opacity: 0;
+    }
+}
+
+@keyframes floatDiagonal {
+    0% {
+        transform: translate(-100%, 100%) rotate(0deg);
+        opacity: 0;
+    }
+    20% {
+        opacity: 1;
+    }
+    100% {
+        transform: translate(100%, -100%) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+@keyframes floatUpAndFlicker {
+    0% {
+        transform: translateY(100vh);
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-100vh);
+        opacity: 0;
+    }
+}
+
+/* Add these new animations */
+.sparkle {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    background: white;
+    border-radius: 50%;
+    filter: blur(1px);
+    animation: sparkleFloat 4s linear infinite;
+}
+
+.gift {
+    position: absolute;
+    font-size: 30px;
+    animation: giftBounce 3s ease-in-out infinite;
+}
+
+.confetti {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    animation: confettiFall 6s linear infinite;
+}
+
+@keyframes sparkleFloat {
+    0% {
+        transform: translate(0, 0) scale(1);
+        opacity: 0;
+    }
+    50% {
+        transform: translate(20px, -20px) scale(1.5);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(40px, -40px) scale(1);
+        opacity: 0;
+    }
+}
+
+@keyframes giftBounce {
+    0%, 100% {
+        transform: translateY(0) rotate(0deg);
+    }
+    50% {
+        transform: translateY(-30px) rotate(10deg);
+    }
+}
+
+@keyframes confettiFall {
+    0% {
+        transform: translateY(-100vh) rotate(0deg);
+    }
+    100% {
+        transform: translateY(100vh) rotate(720deg);
     }
 }
