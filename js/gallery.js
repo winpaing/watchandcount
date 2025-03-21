@@ -120,6 +120,9 @@ class GalleryManager {
         this.currentImageIndex = (this.currentImageIndex + direction + this.images.length) % this.images.length;
         this.updateLightboxImage();
     }
+
+    // Add intersection observer for lazy loading
+    this.setupLazyLoading();
 }
 
 // Initialize gallery
@@ -152,3 +155,68 @@ style.textContent = `
 `;
 document.head.appendChild(style);
 new GalleryManager();
+
+// Add these styles to your CSS
+const style = document.createElement('style');
+style.textContent = `
+    .gallery-item.loading {
+        position: relative;
+        min-height: 200px;
+        background: #f0f0f0;
+    }
+
+    .loading-spinner {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 40px;
+        height: 40px;
+        border: 3px solid #f3f3f3;
+        border-top: 3px solid #FFD700;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+    }
+
+    .lazy {
+        opacity: 0;
+        transition: opacity 0.3s ease-in;
+    }
+
+    .fade-in {
+        opacity: 1;
+    }
+
+    @keyframes spin {
+        0% { transform: translate(-50%, -50%) rotate(0deg); }
+        100% { transform: translate(-50%, -50%) rotate(360deg); }
+    }
+`;
+document.head.appendChild(style);
+
+setupLazyLoading() {
+    const options = {
+        root: null,
+        rootMargin: '50px',
+        threshold: 0.1
+    };
+
+    const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const img = entry.target;
+                img.src = img.dataset.src;
+                img.classList.add('fade-in');
+                observer.unobserve(img);
+            }
+        });
+    }, options);
+
+    // Observe all gallery images
+    document.querySelectorAll('.gallery-item img').forEach(img => {
+        img.classList.add('lazy');
+        img.dataset.src = img.src;
+        img.src = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7'; // Placeholder
+        observer.observe(img);
+    });
+}
