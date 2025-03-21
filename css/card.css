@@ -1,0 +1,68 @@
+.card-form {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+}
+
+.card-form input,
+.card-form textarea,
+.card-form select {
+    width: 100%;
+    padding: 1rem;
+    margin: 0.5rem 0;
+    border: none;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.2);
+    color: #fff;
+    font-size: 1rem;
+}
+
+.card-form textarea {
+    height: 150px;
+    resize: vertical;
+}
+
+.card-options {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+#create-card {
+    padding: 1rem 2rem;
+    background: #FFD700;
+    border: none;
+    border-radius: 8px;
+    color: #000;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+#create-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+}
+
+.card {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 2rem;
+    border-radius: 15px;
+    margin: 2rem 0;
+    color: #000;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+}
+
+.card-message {
+    font-size: 1.2rem;
+    margin: 1rem 0;
+}
+
+.card-sender {
+    text-align: right;
+    font-style: italic;
+    color: #666;
+}
